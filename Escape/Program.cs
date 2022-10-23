@@ -8,6 +8,7 @@ namespace Escape
             Map map = new Map();
             Character player = new Character();
             bool exit = false;
+            Score score = new Score();
             Console.WriteLine("\t\t\t PRESS ENTER");
             Console.Read();
 
@@ -15,8 +16,10 @@ namespace Escape
             {
                 map.DrawMap();
                 player.Input();
+                score.DrawScore();
                 player.DrawCharacter();
                 player.MoveCharacter();
+
                 //Console.Read();
             }
         }
