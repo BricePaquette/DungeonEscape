@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -98,5 +99,19 @@ namespace EscapeLibrary
             CharacterPhysicalScore.RemoveAt(0);//to give the illusion that the snbake is in fact moving
             Thread.Sleep(100);
         }
+        public void CollectScore(Position score, Score newScore)
+        {
+            //Grab the first character
+            Position initialCharacter = CharacterPhysicalScore[CharacterPhysicalScore.Count - 1];
+            //if the character goes over the same postion of x add to the physical score and score counter
+            if (initialCharacter.X == score.X && initialCharacter.Y == score.Y)
+            {
+                CharacterPhysicalScore.Add(new Position(X, Y));
+                newScore.NewScoreLocation();
+                Score++;
+            }
+        }
+
+
     }
 }
