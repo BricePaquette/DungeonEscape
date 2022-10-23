@@ -19,6 +19,7 @@ namespace Escape
                 score.DrawScore();
                 player.DrawCharacter();
                 player.MoveCharacter();
+                player.CollectScore(score.ScoreLocation(), score);
 
                 //Console.Read();
             }
