@@ -11,6 +11,19 @@ namespace Escape
             Character player = new Character();
             bool exit = false;
             Score score = new Score();
+            Obstical obstical = new Obstical();
+            Position position = new Position();
+
+            List<Obstical> obsticals = new List<Obstical>()
+            {
+                obstical,
+                obstical,
+                obstical,
+                obstical,
+                obstical,
+
+            };
+
             Console.WriteLine("\t\t\t PRESS ENTER");
             Console.Read();
             while (!exit)
@@ -23,11 +36,15 @@ namespace Escape
                     Console.Write($"SCORE: {player.Score}");
                     player.Input();
                     score.DrawScore();
+
+                    obstical.DrawObstical();
+
                     player.DrawCharacter();
                     player.MoveCharacter();
+                    player.HitObstical(obstical.ObsticalLocation(), map, obstical);
                     player.CollectScore(score.ScoreLocation(), score);
                     player.HitWall(map);
-                    
+                    //Console.ReadLine();
 
 
                 }
@@ -43,12 +60,12 @@ namespace Escape
                     {
                         case "yes":
                         case "y":
-                            //reset snake postion length and score
+                            //reset character postion length and score
                             player.X = 10;
                             player.Y = 10;
                             player.Score = 0;
+                            player.CharacterPhysicalScore.Add(new Position(position.X, position.Y));
 
-                            player.CharacterPhysicalScore.RemoveRange(0, player.CharacterPhysicalScore.Count - 1);
                             break;
                         case "n":
                         case "no":
