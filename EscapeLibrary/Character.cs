@@ -106,12 +106,36 @@ namespace EscapeLibrary
             //if the character goes over the same postion of x add to the physical score and score counter
             if (initialCharacter.X == score.X && initialCharacter.Y == score.Y)
             {
-                CharacterPhysicalScore.Add(new Position(X, Y));
+                //CharacterPhysicalScore.Add(new Position(X, Y));
                 newScore.NewScoreLocation();
                 Score++;
             }
         }
 
+        public void HitWall(Map map)
+        {
+            Position initialCharacter = CharacterPhysicalScore[CharacterPhysicalScore.Count - 1];
+            if (initialCharacter.X >= map.Width || initialCharacter.X <= 0 || initialCharacter.Y <= 0)
+            {
+                throw new CharacterExeption("Wow you must really suck");
+            }
+            else if (initialCharacter.Y >= map.Height)
+            {
+                //Console.WriteLine("Press ENTER to play next level");
+                //Console.Read();
+                X = 25;
+                Y = 1;
+                Score += 5;
+                
+                
+
+            }
+        }
+
+        public void ResetCharacter()
+        {
+           
+        }
 
     }
 }
