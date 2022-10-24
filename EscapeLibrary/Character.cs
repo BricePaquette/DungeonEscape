@@ -96,8 +96,8 @@ namespace EscapeLibrary
             }
             //wont work with only one Character in the the  is in the same location so everytime we move we need to add the new x and y to the first index in the list 
             CharacterPhysicalScore.Add(new Position(X, Y));
-            CharacterPhysicalScore.RemoveAt(0);//to give the illusion that the snbake is in fact moving
-            Thread.Sleep(100);
+            CharacterPhysicalScore.RemoveAt(0);//to give the illusion that the character is in fact moving
+            Thread.Sleep(200);
         }
         public void CollectScore(Position score, Score newScore)
         {
@@ -131,7 +131,20 @@ namespace EscapeLibrary
 
             }
         }
+        public void HitObstical(Position obsticalPosition, Map map, Obstical obstical)
+        {
+            //Grab the first character
+            Position initialCharacter = CharacterPhysicalScore[CharacterPhysicalScore.Count - 1];
+            //if the character hits an obstical
+            if (initialCharacter.X == obsticalPosition.X && initialCharacter.Y == obsticalPosition.Y)
+            {
 
+                obstical.NewObsticalLocation();
+                CharacterPhysicalScore.RemoveAt(0);
+                
+                //Score++;
+            }
+        }
         public void ResetCharacter()
         {
            
